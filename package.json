@@ -1,7 +1,20 @@
 {
   "name": "arsa",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "description": "Scan a GitHub. Unlock an anime card, power scouter, and 1,000 extras.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/arsa"
+  },
+  "keywords": [
+    "github",
+    "anime",
+    "census",
+    "generative",
+    "nextjs"
+  ],
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",

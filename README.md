@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Scouter
 
-## Getting Started
+Scan a GitHub username. Get a holographic anime card, a ki reading, traits, and 1,000 extras.
 
-First, run the development server:
+Built by [Arsal Adnan](https://github.com/Lunarfang08) (`@Lunarfang08`).
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 — try `/c/Lunarfang08`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Also:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Duel: `/duel/Lunarfang08/torvalds`
+- Fusion: `/fuse/Lunarfang08/gaearon`
+- Squad: `/c/Lunarfang08?squad=2,5,8,12`
 
-## Learn More
+The card shows village (from GitHub location), catchphrase (last public commit), and a weapon named after a pinned/top repo. Tap the scouter for beeps.
 
-To learn more about Next.js, take a look at the following resources:
+## GitHub token
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For a public deploy, add `GITHUB_TOKEN` (classic token, no scopes required) so you are not stuck at 60 requests/hour.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT

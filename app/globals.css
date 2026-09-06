@@ -1,26 +1,97 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #07080f;
+  --ink: #eef2ff;
+  --stamp: #ff4fd8;
+  --gold: #f5d76e;
+  --dusk: #9aa4c7;
+  --line: rgba(255, 255, 255, 0.12);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-stamp: var(--stamp);
+  --color-gold: var(--gold);
+  --color-dusk: var(--dusk);
+  --font-serif: var(--font-serif);
+  --font-jp: var(--font-jp);
+  --font-mono: var(--font-mono);
+  --font-ui: var(--font-ui);
+  --font-lcd: var(--font-lcd);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  min-height: 100%;
+  background: var(--paper);
+  color: var(--ink);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-ui), var(--font-jp), ui-sans-serif, system-ui, sans-serif;
+  background-image:
+    radial-gradient(900px 500px at 15% -10%, rgba(255, 79, 216, 0.18), transparent 55%),
+    radial-gradient(800px 480px at 90% 0%, rgba(92, 225, 255, 0.14), transparent 50%),
+    radial-gradient(700px 400px at 50% 110%, rgba(245, 215, 110, 0.08), transparent 50%);
+}
+
+::selection {
+  background: #ff4fd8;
+  color: #07080f;
+}
+
+.grid-census {
+  display: grid;
+  grid-template-columns: repeat(40, minmax(0, 1fr));
+  gap: 2px;
+}
+
+@media (max-width: 720px) {
+  .grid-census {
+    grid-template-columns: repeat(25, minmax(0, 1fr));
+  }
+}
+
+.perspective-card {
+  perspective: 1200px;
+}
+
+.holo-sheen {
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.18) 40%,
+    transparent 60%
+  );
+  mix-blend-mode: screen;
+  animation: sheen 3.2s ease-in-out infinite;
+}
+
+@keyframes sheen {
+  0% {
+    transform: translateX(-60%);
+  }
+  100% {
+    transform: translateX(60%);
+  }
+}
+
+.scanline {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 3px,
+    rgba(163, 255, 58, 0.06) 3px 4px
+  );
+  animation: scan 2.2s linear infinite;
+}
+
+@keyframes scan {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 48px;
+  }
 }

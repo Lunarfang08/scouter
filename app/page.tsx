@@ -1,103 +1,194 @@
-import Image from "next/image";
+import { SearchForm } from "@/components/SearchForm";
+import { PairForm } from "@/components/PairForm";
+import Link from "next/link";
+
+const CREATOR = {
+  login: "Lunarfang08",
+  name: "Arsal Adnan",
+  github: "https://github.com/Lunarfang08",
+  avatar: "https://github.com/Lunarfang08.png",
+};
+
+const DEMOS = [CREATOR.login, "torvalds", "gaearon", "sindresorhus"];
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="overflow-hidden">
+      <header className="flex items-center justify-between px-6 py-5 md:px-10">
+        <Link href="/" className="text-sm tracking-[0.32em] uppercase text-white/90">
+          Scouter
+        </Link>
+        <a
+          href={CREATOR.github}
+          className="font-[family-name:var(--font-mono)] text-xs tracking-widest text-white/50 hover:text-lime-300"
+        >
+          @{CREATOR.login}
+        </a>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <section className="grid items-center gap-12 px-6 pb-16 pt-8 md:grid-cols-2 md:px-10 md:pt-14">
+        <div>
+          <p className="font-[family-name:var(--font-lcd)] text-xs tracking-[0.28em] text-lime-400">
+            POWER READING · GITHUB
+          </p>
+          <h1 className="mt-4 max-w-xl text-5xl leading-[0.95] text-white md:text-7xl">
+            Scan a GitHub. Unlock the anime.
+          </h1>
+          <p className="mt-6 max-w-lg text-lg text-white/65">
+            Scouter reads a public profile and builds a holographic card: your real name, a ki
+            reading that counts up, a class, anime traits, and a nation of 1,000 extras hiding in
+            old repos. Same username always summons the same cast.
+          </p>
+          <div className="mt-8">
+            <SearchForm />
+          </div>
+          <p className="mt-3 text-sm text-white/40">Paste a username or the full github.com link.</p>
+          <p className="mt-4 font-[family-name:var(--font-mono)] text-xs text-white/40">
+            try{" "}
+            {DEMOS.map((d, i) => (
+              <span key={d}>
+                <Link className="text-cyan-300 underline decoration-white/20 hover:text-white" href={`/c/${d}`}>
+                  {d}
+                </Link>
+                {i < DEMOS.length - 1 ? " · " : ""}
+              </span>
+            ))}
+          </p>
+        </div>
+
+        <Link href={`/c/${CREATOR.login}`} className="group relative block">
+          <div className="absolute -inset-6 rounded-[40px] bg-lime-400/10 blur-3xl transition group-hover:bg-lime-400/20" />
+          <div className="relative overflow-hidden rounded-[32px] border border-lime-400/30 bg-black/60 p-6 shadow-[0_0_80px_rgba(163,255,58,0.12)]">
+            <p className="font-[family-name:var(--font-lcd)] text-xs tracking-[0.3em] text-lime-400">
+              FEATURED SCAN
+            </p>
+            <div className="mt-4 flex items-center gap-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={CREATOR.avatar}
+                alt=""
+                className="h-20 w-20 rounded-2xl object-cover"
+              />
+              <div>
+                <p className="text-2xl text-white">{CREATOR.name}</p>
+                <p className="font-[family-name:var(--font-mono)] text-sm text-white/50">
+                  @{CREATOR.login}
+                </p>
+              </div>
+            </div>
+            <p className="mt-6 font-[family-name:var(--font-lcd)] text-[11px] tracking-[0.25em] text-lime-600">
+              KI READING
+            </p>
+            <p className="font-[family-name:var(--font-lcd)] text-5xl text-lime-300 [text-shadow:0_0_18px_#b7ff3c]">
+              OPEN SCOUTER
+            </p>
+            <p className="mt-3 text-sm text-white/45">
+              Built by {CREATOR.name}. Tap to see the live card, traits, and the other 999.
+            </p>
+          </div>
+        </Link>
+      </section>
+
+      <section className="grid gap-px border-y border-white/10 bg-white/10 md:grid-cols-3">
+        {[
+          {
+            n: "01",
+            t: "Power scouter",
+            d: "A green ki reading that counts up from your public activity. Tap it to scan again. Some readings break 9000.",
+          },
+          {
+            n: "02",
+            t: "Holographic card",
+            d: "Your photo, real name, class, and house. Tilt with the mouse. Flip it for anime traits like Domain of Dead Repos.",
+          },
+          {
+            n: "03",
+            t: "1,000 extras",
+            d: "Languages become clans. Named elites come from repos. Abandoned projects go hollow. Click any square for a full dossier.",
+          },
+        ].map((item) => (
+          <article key={item.n} className="bg-[#07080f] px-6 py-10 md:px-10">
+            <p className="font-[family-name:var(--font-lcd)] text-xs text-lime-500">{item.n}</p>
+            <h2 className="mt-2 text-2xl text-white">{item.t}</h2>
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/55">{item.d}</p>
+          </article>
+        ))}
+      </section>
+
+      <section className="grid gap-8 px-6 py-16 md:grid-cols-2 md:px-10">
+        <div className="rounded-[28px] border border-white/10 bg-white/5 p-6">
+          <h2 className="text-2xl text-white">Duel</h2>
+          <p className="mt-2 text-sm text-white/50">Two scouters race. Highest ki wins.</p>
+          <div className="mt-6">
+            <PairForm mode="duel" />
+          </div>
+        </div>
+        <div className="rounded-[28px] border border-white/10 bg-white/5 p-6">
+          <h2 className="text-2xl text-white">Fusion</h2>
+          <p className="mt-2 text-sm text-white/50">Smash two profiles into one overcharged form.</p>
+          <div className="mt-6">
+            <PairForm mode="fuse" />
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-16 md:px-10">
+        <h2 className="text-3xl text-white md:text-4xl">How a scan works</h2>
+        <ol className="mt-8 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              t: "Drop a GitHub",
+              d: "Username or URL. Scouter pulls public repos, languages, stars, and account age.",
+            },
+            {
+              t: "Ki gets locked",
+              d: "You receive a class (not a football position), six readings, and traits from how you actually ship.",
+            },
+            {
+              t: "Share the card",
+              d: "Copy the link, download the image, or drop it in a README. The cast stays the same next time.",
+            },
+          ].map((step, i) => (
+            <li key={step.t} className="rounded-2xl border border-white/10 bg-white/5 p-6">
+              <p className="font-[family-name:var(--font-lcd)] text-lime-400">0{i + 1}</p>
+              <h3 className="mt-2 text-xl text-white">{step.t}</h3>
+              <p className="mt-2 text-sm text-white/55">{step.d}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="mx-6 mb-16 rounded-[32px] border border-white/10 bg-white/5 p-8 md:mx-10 md:flex md:items-center md:justify-between md:p-12">
+        <div className="flex items-center gap-4">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={CREATOR.avatar} alt="" className="h-16 w-16 rounded-2xl object-cover" />
+          <div>
+            <p className="text-sm text-white/40">Made by</p>
+            <p className="text-2xl text-white">{CREATOR.name}</p>
+            <a href={CREATOR.github} className="font-[family-name:var(--font-mono)] text-sm text-cyan-300">
+              github.com/{CREATOR.login}
+            </a>
+          </div>
+        </div>
+        <div className="mt-6 flex flex-wrap gap-3 md:mt-0">
+          <Link
+            href={`/c/${CREATOR.login}`}
+            className="rounded-full bg-[#b7ff3c] px-5 py-3 text-sm font-semibold text-black"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
+            Scan {CREATOR.login}
+          </Link>
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={CREATOR.github}
+            className="rounded-full border border-white/20 px-5 py-3 text-sm text-white/80"
           >
-            Read our docs
+            GitHub profile
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      <footer className="border-t border-white/10 px-6 py-8 text-sm text-white/35 md:px-10">
+        Scouter · public GitHub only · same name, same thousand extras
       </footer>
-    </div>
+    </main>
   );
 }
