@@ -118,14 +118,18 @@ export default function Home() {
       <section className="grid gap-8 px-6 py-16 md:grid-cols-2 md:px-10">
         <div className="rounded-[28px] border border-white/10 bg-white/5 p-6">
           <h2 className="text-2xl text-white">Duel</h2>
-          <p className="mt-2 text-sm text-white/50">Two scouters race. Highest ki wins.</p>
+          <p className="mt-2 text-sm text-white/50">
+            Type a friend’s username, or roll a random person from public GitHub.
+          </p>
           <div className="mt-6">
             <PairForm mode="duel" />
           </div>
         </div>
         <div className="rounded-[28px] border border-white/10 bg-white/5 p-6">
           <h2 className="text-2xl text-white">Fusion</h2>
-          <p className="mt-2 text-sm text-white/50">Smash two profiles into one overcharged form.</p>
+          <p className="mt-2 text-sm text-white/50">
+            Fuse with a friend, or smash with a random GitHub soul.
+          </p>
           <div className="mt-6">
             <PairForm mode="fuse" />
           </div>

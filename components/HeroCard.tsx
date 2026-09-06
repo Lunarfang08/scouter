@@ -1,8 +1,8 @@
 "use client";
 
 import type { Census } from "@/lib/census";
+import { ChallengeControls } from "./ChallengeControls";
 import { playScouterScan } from "@/lib/audio";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export function HeroCard({ census }: { census: Census }) {
@@ -200,19 +200,8 @@ export function HeroCard({ census }: { census: Census }) {
         >
           Download image
         </a>
-        <Link
-          href={`/duel/${user.login}/torvalds`}
-          className="rounded-full border border-lime-400/40 px-6 py-3 text-sm text-lime-300"
-        >
-          Duel
-        </Link>
-        <Link
-          href={`/fuse/${user.login}/gaearon`}
-          className="rounded-full border border-stamp/40 px-6 py-3 text-sm text-stamp"
-        >
-          Fuse
-        </Link>
       </div>
+      <ChallengeControls login={user.login} />
     </div>
   );
 }

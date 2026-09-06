@@ -151,3 +151,23 @@ export const getGithubProfile = unstable_cache(
   ["github-profile-v2"],
   { revalidate: 3600 },
 );
+
+type ListedUser = { login: string; type: string };
+
+export async function pickRandomGithubLogin(exclude: string[] = []): Promise<string> {
+  const skip = new Set(exclude.map((s) => s.toLowerCase()).filter(Boolean));
+  for (let i = 0; i < 12; i++) {
+    const since = Math.floor(Math.random() * 160_000_000);
+    const res = await fetch(`https://api.github.com/users?per_page=50&since=${since}`, {
+      headers: headers(),
+      cache: "no-store",
+    });
+    if (!res.ok) continue;
+    const users = (await res.json()) as ListedUser[];
+    const people = users.filter((u) => u.type === "User" && !skip.has(u.login.toLowerCase()));
+    if (people.length) {
+      return people[Math.floor(Math.random() * people.length)]!.login;
+    }
+  }
+  return skip.has("octocat") ? "torvalds" : "octocat";
+}
